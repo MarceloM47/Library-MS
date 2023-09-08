@@ -1,0 +1,25 @@
+<div id="<%= dom_id book %>">
+  <p>
+    <%= image_tag(url_for(book.image), size: "300x400") %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= book.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= book.description %>
+  </p>
+
+  <p>
+    <strong>State:</strong>
+    <% if book.state %>
+      Disponible
+    <% else %>
+      No disponible
+    <% end %>
+  </p>
+
+</div>
