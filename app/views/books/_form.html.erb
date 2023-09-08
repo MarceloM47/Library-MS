@@ -12,22 +12,22 @@
   <% end %>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
+    <%= form.label :title, 'Título', style: "display: block" %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
+    <%= form.label :description, 'Descripción', style: "display: block" %>
     <%= form.text_field :description %>
   </div>
 
   <div>
-    <%= form.label :image, style: "display: block" %>
+    <%= form.label :image, 'Imagen del libro', style: "display: block" %>
     <%= form.file_field :image %>
   </div>
 
   <div>
-    <%= form.label :state, style: "display: block" %>
+    <%= form.label :state, 'Disponible', style: "display: block" %>
     <%= form.check_box :state %>
   </div>
 

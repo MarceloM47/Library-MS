@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :loans do
+    member do
+      put :return_book
+    end
+  end  
   root "main#index"
   get 'main/user_index'
   get 'main/admin_index'
