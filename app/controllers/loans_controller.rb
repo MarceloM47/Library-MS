@@ -1,5 +1,6 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: %i[ show edit update destroy ]
+  before_action :require_admin, only: %i[ show edit update destroy ]
 
   # GET /loans or /loans.json
   def index
@@ -75,6 +76,13 @@ class LoansController < ApplicationController
 
 
   private
+
+    def require_admin
+      unless current_user.admin?
+        redirect_to root_path, alert: "Acceso denegado. Debes ser un administrador."
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_loan
       @loan = Loan.find(params[:id])

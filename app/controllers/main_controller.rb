@@ -5,9 +5,9 @@ class MainController < ApplicationController
     @user = current_user
 
     if @user.admin?
-      render "admin_index"
+      render "layouts/main/admin_index"
     else
-      render "user_index"
+      render "layouts/main/user_index"
     end
   end
 

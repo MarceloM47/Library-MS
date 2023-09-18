@@ -1,26 +1,33 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
+  before_action :require_admin, only: %i[ edit update destroy ]
 
   # GET /books or /books.json
   def index
+    @user = current_user
     @books = Book.all
   end
 
   # GET /books/1 or /books/1.json
   def show
+    @user = current_user
+    render layout: "main/admin_index"
   end
 
   # GET /books/new
   def new
     @book = Book.new
+    render layout: "main/admin_index"
   end
 
   # GET /books/1/edit
   def edit
+    render layout: "main/admin_index"
   end
 
   # POST /books or /books.json
   def create
+    render layout: "main/admin_index"
     @book = Book.new(book_params)
 
     respond_to do |format|
@@ -36,6 +43,7 @@ class BooksController < ApplicationController
 
   # PATCH/PUT /books/1 or /books/1.json
   def update
+    render layout: "main/admin_index"
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to book_url(@book), notice: "Book was successfully updated." }
@@ -49,6 +57,7 @@ class BooksController < ApplicationController
 
   # DELETE /books/1 or /books/1.json
   def destroy
+    render layout: "main/admin_index"
     @book.destroy
 
     respond_to do |format|
@@ -58,6 +67,13 @@ class BooksController < ApplicationController
   end
 
   private
+
+    def require_admin
+      unless current_user.admin?
+        redirect_to root_path, alert: "Acceso denegado. Debes ser un administrador."
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])

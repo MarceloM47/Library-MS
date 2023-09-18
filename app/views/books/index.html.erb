@@ -1,14 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Books</h1>
+<h1 class="text-center mb-5">Cátalogo de Libros</h1>
+
+<% if @user.admin? %>
+  <%= link_to "New book", new_book_path, class: "btn btn-primary m-4" %>
+<% end %>
 
 <div id="books">
-  <% @books.each do |book| %>
-    <%= render book %>
-    <p>
-      <%= link_to "Show this book", book %>
-    </p>
-  <% end %>
+  <div>
+    <% @books.each do |book| %>
+      <div><%= render book %></div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New book", new_book_path %>

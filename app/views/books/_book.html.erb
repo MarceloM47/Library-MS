@@ -1,25 +1,25 @@
-<div id="<%= dom_id book %>">
-  <p>
-    <%= image_tag(url_for(book.image), size: "300x400") %>
-  </p>
-
-  <p>
-    <strong>Title:</strong>
-    <%= book.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= book.description %>
-  </p>
-
-  <p>
-    <strong>State:</strong>
-    <% if book.state %>
-      Disponible
-    <% else %>
-      No disponible
-    <% end %>
-  </p>
-
+<div id="<%= dom_id book %>" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 70px;">
+  <div class="card p-3 m-0" style="width: 40%;">
+    <%= image_tag(url_for(book.image)) %>
+    <div class="card-body">
+      <h4 class="card-title">
+        <%= book.title %>
+      </h4>
+      <p class="card-text">
+        <%= simple_description book.description %>
+      </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <% if book.state %>
+        Disponible
+      <% else %>
+        No disponible
+      <% end %>
+      </li>
+    </ul>
+    <div class="card-body">
+        <%= link_to "Show this book", book %>
+    </div>
+  </div>
 </div>
