@@ -1,6 +1,6 @@
 module BooksHelper
     def simple_description(description)
-        description.truncate(50)
+        description.truncate(200)
     
     end
 end

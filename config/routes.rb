@@ -4,9 +4,7 @@ Rails.application.routes.draw do
       put :return_book
     end
   end  
-  root "main#index"
-  get 'main/user_index'
-  get 'main/admin_index'
+  root "books#index"
   resources :books
   resources :specialities
   devise_for :users, controllers: {
@@ -17,9 +15,4 @@ Rails.application.routes.draw do
   devise_scope :user do  
     get '/users/sign_out' => 'devise/sessions#destroy'     
   end
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

@@ -1,17 +1,24 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-  before_action :require_admin, only: %i[ edit update destroy ]
+  before_action :require_admin, only: %i[ new create edit update destroy ]
 
   # GET /books or /books.json
   def index
     @user = current_user
     @books = Book.all
+    if current_user.admin?
+      render layout: "main/admin_index"
+    end
   end
 
   # GET /books/1 or /books/1.json
   def show
     @user = current_user
-    render layout: "main/admin_index"
+    if current_user.admin?
+      render layout: "main/admin_index"
+    else
+      render layout: "main/user_index"
+    end
   end
 
   # GET /books/new
@@ -27,7 +34,6 @@ class BooksController < ApplicationController
 
   # POST /books or /books.json
   def create
-    render layout: "main/admin_index"
     @book = Book.new(book_params)
 
     respond_to do |format|

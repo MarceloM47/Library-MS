@@ -68,6 +68,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     bcrypt (3.1.19)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -128,7 +131,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.5)
-    minitest (5.19.0)
+    minitest (5.20.0)
     msgpack (1.7.2)
     net-imap (0.3.7)
       date
@@ -245,6 +248,7 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
+  annotate
   bootsnap
   capybara
   debug
@@ -252,6 +256,7 @@ DEPENDENCIES
   friendly_id (~> 5.4.0)
   importmap-rails
   jbuilder
+  minitest (~> 5.20.0)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.7, >= 7.0.7.2)
