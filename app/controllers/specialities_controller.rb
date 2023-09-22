@@ -1,5 +1,6 @@
 class SpecialitiesController < ApplicationController
   before_action :set_speciality, only: %i[ show edit update destroy ]
+  before_action :require_admin
 
   # GET /specialities or /specialities.json
   def index
@@ -58,6 +59,12 @@ class SpecialitiesController < ApplicationController
   end
 
   private
+    def require_admin
+      unless current_user.admin?
+        redirect_to root_path, alert: "Acceso denegado. Debes ser un administrador."
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_speciality
       @speciality = Speciality.find(params[:id])
