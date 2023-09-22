@@ -25,8 +25,15 @@ class LoansController < ApplicationController
   def create
     @loan = Loan.new(loan_params)
 
+    @book = @loan.book
+
     respond_to do |format|
       if @loan.save
+        @book.decrement!(:stock)
+        if @book.stock.zero?
+          @book.update(state: false)
+        end
+
         @loan.book.update(state: false)
         format.html { redirect_to loan_url(@loan), notice: "Loan was successfully created." }
         format.json { render :show, status: :created, location: @loan }
