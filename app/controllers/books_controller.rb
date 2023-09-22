@@ -14,6 +14,7 @@ class BooksController < ApplicationController
   # GET /books/1 or /books/1.json
   def show
     @user = current_user
+    
     if current_user.admin?
       render layout: "main/admin_index"
     else
@@ -49,10 +50,9 @@ class BooksController < ApplicationController
 
   # PATCH/PUT /books/1 or /books/1.json
   def update
-    render layout: "main/admin_index"
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to book_url(@book), notice: "Book was successfully updated." }
+        format.html { redirect_to book_url(@book), notice: "El libro ha sido actualizado con éxito" }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -67,7 +67,7 @@ class BooksController < ApplicationController
     @book.destroy
 
     respond_to do |format|
-      format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
+      format.html { redirect_to books_url, notice: "El libro ha sido eliminado con éxito" }
       format.json { head :no_content }
     end
   end
@@ -76,7 +76,7 @@ class BooksController < ApplicationController
 
     def require_admin
       unless current_user.admin?
-        redirect_to root_path, alert: "Acceso denegado. Debes ser un administrador."
+        redirect_to root_path, notice: "Debes ser administrador."
       end
     end
 
@@ -87,6 +87,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :description, :image, :state)
+      params.require(:book).permit(:title, :description, :image, :state, :stock)
     end
 end

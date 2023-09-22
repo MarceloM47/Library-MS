@@ -1,4 +1,4 @@
-<div id="<%= dom_id book %>" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 70px;">
+<div id="<%= dom_id book %>" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 70px; margin-top: 30px;">
   <div class="card p-3 m-0" style="width: 40%;">
     <%= image_tag(url_for(book.image)) %>
     <div class="card-body">
@@ -18,8 +18,10 @@
       <% end %>
       </li>
     </ul>
-    <div class="card-body">
-        <%= link_to "Ver más", book %>
+      <div class="card-body">
+        <% if action_name == "index" %>
+          <%= link_to "Ver más", book %>
+        <% end %>
     </div>
   </div>
 </div>
