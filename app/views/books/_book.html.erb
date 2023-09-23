@@ -17,11 +17,16 @@
         No disponible
       <% end %>
       </li>
+      <li class="list-group-item">
+        <% if current_user.admin? %>
+          Stock: <%= book.stock %>
+        <% end %>
+      </li>
     </ul>
       <div class="card-body">
         <% if action_name == "index" %>
           <%= link_to "Ver más", book %>
         <% end %>
-    </div>
+      </div>
   </div>
 </div>

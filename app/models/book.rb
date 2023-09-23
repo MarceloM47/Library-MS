@@ -11,6 +11,9 @@
 #  image       :string
 #
 class Book < ApplicationRecord
+    extend FriendlyId
+    friendly_id :title, use: :slugged
+
     has_one_attached :image
     has_many :loans
 
@@ -26,4 +29,20 @@ class Book < ApplicationRecord
 
     validates :stock, presence: { message: "El stock no puede estar en blanco" }
     validates :stock, numericality: true
+
+
+
+
+
+
+
+    before_save :update_state_based_on_stock
+
+    private
+
+    def update_state_based_on_stock
+        if stock.zero?
+            self.state = false
+        end
+    end
 end
