@@ -1,0 +1,18 @@
+<section class="relative">
+  <div class="container px-4 mx-auto">
+    <div class="text-center">
+      <h2 class="m-4">
+        Resultado de la busqueda: <%= @q %>
+      </h2>
+    </div>
+    <div>
+        <div id="books">
+        <div>
+            <% @books.each do |book| %>
+            <div><%= render book %></div>
+            <% end %>
+        </div>
+        </div>
+    </div>
+    <%= link_to "Volver al cátalogo", root_path %>
+</section>

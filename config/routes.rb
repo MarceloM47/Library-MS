@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     end
   end  
   root "books#index"
-  resources :books
+  resources :books do
+    get 'search', on: :collection # books/search -> books#search
+  end
   resources :specialities
   devise_for :users, controllers: {
     registrations: 'user/registrations',

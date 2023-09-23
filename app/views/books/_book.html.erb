@@ -6,7 +6,11 @@
         <%= book.title %>
       </h4>
       <p class="card-text">
+      <% if action_name == "index" %>
         <%= simple_description book.description %>
+      <% else %>
+        <%= book.description %>
+      <% end %>
       </p>
     </div>
     <ul class="list-group list-group-flush">

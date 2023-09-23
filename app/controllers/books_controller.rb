@@ -5,7 +5,9 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @user = current_user
-    @books = Book.all
+    @books = Book.paginate(page: params[:page], per_page:5)
+
+
     if current_user.admin?
       render layout: "main/admin_index"
     end
@@ -39,7 +41,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to book_url(@book), notice: "Book was successfully created." }
+        format.html { redirect_to book_url(@book), notice: "El libro ha sido creado con éxito." }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -70,6 +72,12 @@ class BooksController < ApplicationController
       format.html { redirect_to books_url, notice: "El libro ha sido eliminado con éxito" }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    
+    @q = params[:q]
+    @books = Book.where("title ILIKE ?", "%#{@q}%")
   end
 
   private
