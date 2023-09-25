@@ -75,7 +75,6 @@ class BooksController < ApplicationController
   end
 
   def search
-    
     @q = params[:q]
     @books = Book.where("title ILIKE ?", "%#{@q}%")
   end

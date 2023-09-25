@@ -25,4 +25,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+         
+  validates :email, presence: { message: "El email no puede estar en vacío" }
+  validates :name, presence: { message: "El nombre no puede estar en vacío" }
+  validates :lastname, presence: { message: "El apellido no puede estar en vacío" }
+  validates :dni, presence: { message: "El CI no puede estar en vacío" }, numericality: { only_integer: true, message: "El CI debe ser un número válido" }
+  validates :phone_number, presence: { message: "El Número de teléfono no puede estar en vacío" }, numericality: { only_integer: true, message: "El Número de teléfono debe ser un número válido" }
+  validates :speciality_id, presence: { message: "La especialidad no puede estar en vacío" }
+
 end
