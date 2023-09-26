@@ -15,10 +15,16 @@ class LoansController < ApplicationController
   def new
     @loan = Loan.new
     @available_books = Book.where(state: true)
+    @users_without_pending_loans = User.select { |user| !user.has_pending_loan? }
+
+
   end
 
   # GET /loans/1/edit
   def edit
+    @loan = Loan.find(params[:id])
+    @available_books = Book.where(state: true)
+
   end
 
   # POST /loans or /loans.json
@@ -97,6 +103,6 @@ class LoansController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def loan_params
-      params.require(:loan).permit(:loan_date, :return_date, :book_id, :user_id, :returned)
+      params.require(:loan).permit(:loan_date, :return_date, :book_id, :user_id, :returned, :expected_return_date)
     end
 end

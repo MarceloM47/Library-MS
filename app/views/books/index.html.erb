@@ -1,9 +1,7 @@
-<p style="color: green"><%= notice %></p>
-
-<h1 class="text-center mb-5">Cátalogo de Libros</h1>
+<h1 class="text-center p-4 ">Cátalogo de Libros</h1>
 
 <% if @user.admin? %>
-  <%= link_to "New book", new_book_path, class: "btn btn-primary m-4" %>
+  <%= link_to "Nuevo libro", new_book_path, class: "btn btn-primary m-4" %>
 <% end %>
 
 <div id="books">

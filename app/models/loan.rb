@@ -15,4 +15,7 @@
 class Loan < ApplicationRecord
   belongs_to :book
   belongs_to :user
+
+  validates :loan_date, presence: true
+  validates :expected_return_date, presence: false
 end

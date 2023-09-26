@@ -1,13 +1,12 @@
-<%= form_with(model: loan) do |form| %>
+<%= form_with(model: loan, class: "p-3") do |form| %>
   <% if loan.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
-
-      <ul>
-        <% loan.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div>
+      <% loan.errors.each do |error| %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%= image_tag("icons/exclamation-triangle.svg", alt: "exclamation-triangle") %>
+          <%= error.message %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 
@@ -23,12 +22,22 @@
 
   <div>
     <%= form.label :book_id, style: "display: block" %>
-    <%= form.collection_select :book_id, @available_books, :id, :title %>
+  <%= form.collection_select :book_id, @available_books, :id, :title, { include_blank: true }, { disabled: action_name == "edit" } %>
+  </div>
+
+  <div>
+    <%= form.label :expected_return_date, style: "display: block" %>
+    <%= form.date_field :expected_return_date %>
   </div>
 
   <div>
     <%= form.label :user_id, style: "display: block" %>
-    <%= form.collection_select :user_id, User.all, :id, :dni %>
+    <% if action_name == "edit" %>
+      <%= form.text_field :user_id, value: @loan.user.dni, readonly: true %>
+    <% else %>
+        <%= form.collection_select :user_id, @users_without_pending_loans, :id, :dni %>
+
+    <% end %>
   </div>
 
   <div>

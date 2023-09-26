@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_book, only: %i[ show edit update destroy ]
   before_action :require_admin, only: %i[ new create edit update destroy ]
 
@@ -6,7 +7,6 @@ class BooksController < ApplicationController
   def index
     @user = current_user
     @books = Book.paginate(page: params[:page], per_page:5)
-
 
     if current_user.admin?
       render layout: "main/admin_index"
