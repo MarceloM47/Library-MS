@@ -17,7 +17,8 @@ class LoansController < ApplicationController
   def new
     @loan = Loan.new
     @available_books = Book.where(state: true)
-    @users_without_pending_loans = User.select { |user| !user.has_pending_loan? }
+    @users_without_pending_loans = User.select { |user| !user.has_pending_loan? }.to_a
+
 
 
   end
