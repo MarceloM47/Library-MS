@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @user = current_user
-    @books = Book.paginate(page: params[:page], per_page:5)
+    @books = Book.all
 
     if current_user.admin?
       render layout: "main/admin_index"
@@ -65,7 +65,6 @@ class BooksController < ApplicationController
 
   # DELETE /books/1 or /books/1.json
   def destroy
-    render layout: "main/admin_index"
     @book.destroy
 
     respond_to do |format|

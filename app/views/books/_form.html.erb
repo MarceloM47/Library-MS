@@ -32,10 +32,10 @@
 
   <div>
     <%= form.label :state, 'Disponible', style: "display: block" %>
-    <%= form.check_box :state, class:"mb-3" %>
+    <%= form.check_box :state, class:"mb-3", checked: true %>
   </div>
 
   <div>
-    <%= form.submit class:"btn btn-success" %>
+    <%= form.submit class:"btn btn-success", value: "Guardar" %>
   </div>
 <% end %>
