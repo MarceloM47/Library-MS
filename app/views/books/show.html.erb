@@ -1,11 +1,31 @@
 <%= render @book %>
 
 <div class="m-4">
-
   <% if @user.admin? %>
-    <%= link_to "Edit this book", edit_book_path(@book), class: "btn btn-primary mb-2" %>
-    <%= button_to "Destroy this book", @book, method: :delete, class: "btn btn-danger mb-2" %>
+    <%= link_to "Editar este libro", edit_book_path(@book), class: "btn btn-primary mb-2" %>
+    <button type="button" class="btn btn-danger mb-2" id="btn-del" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+      Eliminar este libro
+    </button>
   <% end %>
-  <%= link_to "Back to books", books_path %>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar libro</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de eliminar este libro?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <%= button_to "Eliminar", @book, method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <%= link_to "Volver al catálogo", books_path %>
 </div>
