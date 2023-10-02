@@ -1,27 +1,33 @@
-<div id="<%= dom_id loan %>">
-  <p>
-    <strong>Loan date:</strong>
-    <%= loan.loan_date %>
-  </p>
+<div id="<%= dom_id loan %>" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 70px; margin-top: 30px;">
+      <p>
+        <strong>Fecha de préstamo:</strong>
+        <%= loan.loan_date %>
+      </p>
 
-  <p>
-    <strong>Return date:</strong>
-    <%= loan.return_date %>
-  </p>
+      <p>
+        <strong>Fecha de devolusión:</strong>
+        <%= loan.return_date %>
+      </p>
 
-  <p>
-    <strong>Book:</strong>
-    <%= loan.book.title %>
-  </p>
+      <p>
+        <strong>Libro:</strong>
+        <%= loan.book.title %>
+      </p>
 
-  <p>
-    <strong>User:</strong>
-    <%= loan.user.dni %>
-  </p>
+      <p>
+        <strong>Usuario:</strong>
+        <%= loan.user.dni %>
+      </p>
 
-  <p>
-    <strong>Returned:</strong>
-    <%= loan.returned %>
-  </p>
+      <p>
+        <strong>Estado:</strong>
+        <%= loan.returned %>
+      </p>
 
+      <p>
+        <strong>Fecha esperada de entrega:</strong>
+        <%= loan.expected_return_date %>
+      </p>
+
+    </div>
 </div>

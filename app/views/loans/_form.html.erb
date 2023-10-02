@@ -36,7 +36,6 @@
       <%= form.text_field :user_id, value: @loan.user.dni, readonly: true %>
     <% else %>
         <%= form.collection_select :user_id, @users_without_pending_loans, :id, :dni %>
-
     <% end %>
   </div>
 

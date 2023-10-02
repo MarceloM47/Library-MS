@@ -1,12 +1,38 @@
-<h1>Préstamos</h1>
+<h1 class="text-center p-4">Préstamos</h1>
 
-<div id="loans">
-  <% @loans.each do |loan| %>
-    <%= render loan %>
-    <p>
-      <%= link_to "Ver más", loan %>
-    </p>
-  <% end %>
+<div id="loans" class="table-responsive p-2">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Fecha de préstamo:</th>
+        <th>Fecha esperada de entrega:</th>
+        <th>Fecha de devolución:</th>
+        <th>Libro</th>
+        <th>Usuario</th>
+        <th>Estado</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @loans.each do |loan| %>
+        <tr>
+          <td><%= loan.loan_date %></td>
+          <td><%= loan.expected_return_date %></td>
+          <td><%= loan.return_date %></td>
+          <td><%= loan.book.title %></td>
+          <td><%= loan.user.dni %></td>
+          <td>
+            <% if loan.returned %>
+              Devuelto
+            <% else %>
+              No devuelto
+            <% end %>
+          </td>
+          <td><%= link_to "Ver más", loan, class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "Nuevo préstamo", new_loan_path %>
+<%= link_to "Nuevo préstamo", new_loan_path, class: "btn btn-success mb-4" %>
