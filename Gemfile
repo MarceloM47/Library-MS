@@ -49,7 +49,6 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 gem "devise"
 gem 'twilio-ruby', '~> 6.5.0'
-gem 'will_paginate', '~> 4.0'
 gem 'friendly_id', '~> 5.4.0'
 
 group :development, :test do
