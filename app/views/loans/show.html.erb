@@ -1,15 +1,15 @@
-<p style="color: green"><%= notice %></p>
 
 <%= render @loan %>
 
 
   <%= form_with(url: return_book_loan_path(@loan), method: :put) do |form| %>
-    <%= form.submit "Devolver libro" %>
+    <%= form.submit "Devolver libro", class:"btn btn-success m-2" %>
   <% end %>
 
 <div>
-  <%= link_to "Edit this loan", edit_loan_path(@loan) %> |
-  <%= link_to "Back to loans", loans_path %>
+  <%= link_to "Editar este préstamo", edit_loan_path(@loan), class:"btn btn-primary m-2" %> 
+  <%= button_to "Eliminar este préstamo", @loan, method: :delete, class:"btn btn-danger m-2" %>
 
-  <%= button_to "Destroy this loan", @loan, method: :delete %>
+  <%= link_to "Volver a préstamos", loans_path, class:"m-2" %>
+
 </div>

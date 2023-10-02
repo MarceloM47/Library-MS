@@ -1,33 +1,33 @@
-<div id="<%= dom_id loan %>" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 70px; margin-top: 30px;">
-      <p>
-        <strong>Fecha de préstamo:</strong>
-        <%= loan.loan_date %>
-      </p>
-
-      <p>
-        <strong>Fecha de devolusión:</strong>
-        <%= loan.return_date %>
-      </p>
-
-      <p>
-        <strong>Libro:</strong>
-        <%= loan.book.title %>
-      </p>
-
-      <p>
-        <strong>Usuario:</strong>
-        <%= loan.user.dni %>
-      </p>
-
-      <p>
-        <strong>Estado:</strong>
-        <%= loan.returned %>
-      </p>
-
-      <p>
-        <strong>Fecha esperada de entrega:</strong>
-        <%= loan.expected_return_date %>
-      </p>
-
-    </div>
-</div>
+<table id="<%= dom_id loan %>" class="table table-bordered mt-5 mb-5">
+  <tbody>
+    <tr>
+      <th scope="row">Fecha de préstamo</th>
+      <td><%= loan.loan_date %></td>
+    </tr>
+    <tr>
+      <th scope="row">Fecha de devolución</th>
+      <td><%= loan.return_date %></td>
+    </tr>
+    <tr>
+      <th scope="row">Libro</th>
+      <td><%= loan.book.title %></td>
+    </tr>
+    <tr>
+      <th scope="row">Usuario</th>
+      <td><%= loan.user.dni %></td>
+    </tr>
+    <tr>
+      <th scope="row">Estado</th>
+      <td>
+      <% if loan.returned %>
+        Devuelto
+      <% else %>
+        No devuelto
+      <% end %></td>
+    </tr>
+    <tr>
+      <th scope="row">Fecha esperada de entrega</th>
+      <td><%= loan.expected_return_date %></td>
+    </tr>
+  </tbody>
+</table>
