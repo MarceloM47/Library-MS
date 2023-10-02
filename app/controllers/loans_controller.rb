@@ -38,12 +38,10 @@ class LoansController < ApplicationController
     respond_to do |format|
       if @loan.save
         @book.decrement!(:stock)
-        if @book.stock.zero?
-          @book.update(state: false)
-        end
+        @book.update_columns(state: false) if @book.stock.zero?
+        
 
-        @loan.book.update(state: false)
-        format.html { redirect_to loan_url(@loan), notice: "Loan was successfully created." }
+        format.html { redirect_to loan_url(@loan), notice: "El préstamo ha sido creado con éxito" }
         format.json { render :show, status: :created, location: @loan }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -56,7 +54,9 @@ class LoansController < ApplicationController
   def update
     respond_to do |format|
       if @loan.update(loan_params)
-        format.html { redirect_to loan_url(@loan), notice: "Loan was successfully updated." }
+        @book.update_columns(state: false) if @book.stock.zero?
+
+        format.html { redirect_to loan_url(@loan), notice: "El préstamo ha sido actualizado con éxito" }
         format.json { render :show, status: :ok, location: @loan }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -70,7 +70,7 @@ class LoansController < ApplicationController
     @loan.destroy
 
     respond_to do |format|
-      format.html { redirect_to loans_url, notice: "Loan was successfully destroyed." }
+      format.html { redirect_to loans_url, notice: "El préstamo ha sido eliminado con éxito" }
       format.json { head :no_content }
     end
   end
@@ -82,7 +82,7 @@ class LoansController < ApplicationController
       flash[:notice] = "El libro ya ha sido devuelto"
     else
       @loan.update(returned: true)
-      @loan.book.update(state: true)
+      @loan.book.increment!(:stock)
       flash[:notice] = "Libro devuelto con éxito"
     end
   

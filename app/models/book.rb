@@ -30,7 +30,7 @@ class Book < ApplicationRecord
     validates :state, presence: { message: "El estado no puede se nulo" }
 
     validates :stock, presence: { message: "El stock no puede estar en blanco" }
-    validates :stock, numericality: true
+    validates :stock, numericality: { greater_than_or_equal_to: 0, message: "El stock no puede ser un número negativo" }
 
 
 
@@ -43,7 +43,7 @@ class Book < ApplicationRecord
     private
 
     def update_state_based_on_stock
-        if stock.zero?
+        if stock == 0
             self.state = false
         end
     end
