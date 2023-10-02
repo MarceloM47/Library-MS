@@ -2,6 +2,9 @@ class SpecialitiesController < ApplicationController
   before_action :set_speciality, only: %i[ show edit update destroy ]
   before_action :require_admin
 
+  layout "main/admin_index"
+
+
   # GET /specialities or /specialities.json
   def index
     @specialities = Speciality.all

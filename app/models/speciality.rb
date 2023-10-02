@@ -9,4 +9,6 @@
 #
 class Speciality < ApplicationRecord
     has_many :users
+
+    validates :name, presence: { message: "El nombre no puede ser nulo" }, uniqueness: { message: "El nombre ya existe" }
 end
