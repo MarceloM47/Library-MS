@@ -9,6 +9,8 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  image       :string
+#  stock       :integer          default(1)
+#  slug        :string
 #
 
 one:
