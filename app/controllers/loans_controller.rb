@@ -82,7 +82,7 @@ class LoansController < ApplicationController
     if @loan.returned?
       flash[:notice] = "El libro ya ha sido devuelto"
     else
-      @loan.update(returned: true)
+      @loan.update(returned: true, return_date: Date.current)
       @loan.book.increment!(:stock)
       flash[:notice] = "Libro devuelto con éxito"
     end
