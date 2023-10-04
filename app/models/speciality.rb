@@ -8,7 +8,7 @@
 #  updated_at :datetime         not null
 #
 class Speciality < ApplicationRecord
-    has_many :users
+    has_many :users, dependent: :nullify
 
     validates :name, presence: { message: "El nombre no puede ser nulo" }, uniqueness: { message: "El nombre ya existe" }
 end

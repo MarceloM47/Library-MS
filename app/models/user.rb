@@ -20,7 +20,7 @@
 #
 class User < ApplicationRecord
   belongs_to :speciality
-  has_many :loans
+  has_many :loans, dependent: :nullify
 
   def has_pending_loan?
     loans.exists?(returned: false)

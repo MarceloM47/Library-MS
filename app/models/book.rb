@@ -17,7 +17,7 @@ class Book < ApplicationRecord
     friendly_id :title, use: :slugged
 
     has_one_attached :image
-    has_many :loans
+    has_many :loans, dependent: :nullify
 
     validates :title, presence: { message: "El título no puede estar en blanco" }
     validates :title, length: { minimum: 5, maximum: 200, message: "El título debe tener entre 5 y 200 caracteres." }
