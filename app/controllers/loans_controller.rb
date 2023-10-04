@@ -6,7 +6,7 @@ class LoansController < ApplicationController
 
   # GET /loans or /loans.json
   def index
-    @loans = Loan.all
+    @loans = Loan.order('created_at DESC').all
   end
 
   # GET /loans/1 or /loans/1.json
