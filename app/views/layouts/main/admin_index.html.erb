@@ -31,29 +31,13 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to "Especialidades", specialities_path, class:"nav-link active" %>
-          </li>
-<!-- 
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-              Libros
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Crear nuevo libro", new_book_path, class:"dropdown-item" %></li>
-              <li><%= link_to "Lista de libros", root_path, class:"dropdown-item" %></li>
-            </ul>
+            <%= link_to "Usuarios", admin_users_path, class:"nav-link active" %>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-              Préstamos
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Crear nuevo préstamo", new_loan_path, class:"dropdown-item" %></li>
-              <li><%= link_to "Lista de préstamos", loans_path, class:"dropdown-item" %></li>
-            </ul>
+          <li class="nav-item">
+            <%= link_to "Especialidades", specialities_path, class:"nav-link active" %>
           </li>
--->
+
           <li class="nav-item">
             <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class:"nav-link" %>
           </li>
