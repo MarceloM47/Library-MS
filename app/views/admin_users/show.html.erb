@@ -1,0 +1,8 @@
+
+<%= render partial: 'admin_users/user', locals: { user: @user } %>
+
+<div>
+  <%= link_to "Editar este usuario", edit_admin_user_path(@user), class:"btn btn-primary m-2" %> 
+
+  <%= link_to "Volver a usuarios", admin_users_path, class:"m-2" %>
+</div>

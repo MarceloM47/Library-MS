@@ -1,0 +1,34 @@
+<h1 class="text-center p-4">Lista de Usuarios</h1>
+
+<div class="table-responsive p-2">
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>C.I</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Admin</th>
+        <th>Activo</th>
+        <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.each do |user| %>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.name %></td>
+            <td><%= user.lastname %></td>
+            <td><%= user.dni %></td>
+            <td><%= user.email %></td>
+            <td><%= user.phone_number %></td>
+            <td><%= user.admin %></td>
+            <td><%= user.active %></td>
+            <td><%= link_to "Editar", edit_admin_user_path(user), class: "btn btn-primary" %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>

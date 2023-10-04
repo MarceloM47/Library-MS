@@ -1,0 +1,51 @@
+<%= form_with(model: user, url: admin_user_path(user), class: "p-3") do |form| %>
+  <% if user.errors.any? %>
+    <div>
+      <% user.errors.each do |error| %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%= image_tag("icons/exclamation-triangle.svg", alt: "exclamation-triangle") %>
+          <%= error.message %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, "Nombre", style: "display: block" %>
+    <%= form.text_field :name, class:"form-control mb-3" %>
+  </div>
+
+  <div>
+    <%= form.label :lastname, "Apellido", style: "display: block" %>
+    <%= form.text_field :lastname, class:"form-control mb-3" %>
+  </div>
+
+  <div>
+    <%= form.label :dni, "C.I", style: "display: block" %>
+    <%= form.text_field :dni, class:"form-control mb-3" %>
+  </div>
+
+  <div>
+    <%= form.label :email, "Email", style: "display: block" %>
+    <%= form.email_field :email, class:"form-control mb-3" %>
+  </div>
+
+  <div>
+    <%= form.label :phone_number, "Número de teléfono", style: "display: block" %>
+    <%= form.number_field :phone_number, class:"form-control mb-3" %>
+  </div>
+
+  <div>
+    <%= form.label :admin, "Admin", style: "display: block" %>
+    <%= form.check_box :admin, class:"form-check-input mb-3" %>
+  </div>
+
+  <div>
+    <%= form.label :active, "Active", style: "display: block" %>
+    <%= form.check_box :active, class:"form-check-input mb-3" %>
+  </div>
+
+ <div>
+    <%= form.submit class:"btn btn-success", value: "Guardar" %>
+  </div>
+<% end %>
