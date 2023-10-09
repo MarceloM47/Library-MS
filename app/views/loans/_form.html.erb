@@ -22,10 +22,12 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :book_id, "Libro", style: "display: block" %>
-    <%= form.collection_select :book_id, @available_books, :id, :title, { disabled: action_name == "edit" }, class: "form-select mb-3" %>
-  </div>
+  <% unless action_name == "edit" %>
+    <div>
+      <%= form.label :book_id, "Libro", style: "display: block" %>
+      <%= form.collection_select :book_id, @available_books, :id, :title, { prompt: "Selecciona un libro" }, class: "form-select mb-3" %>
+    </div>
+  <% end %>
 
   <div>
     <%= form.label :expected_return_date, "Fecha esperada de entrega", style: "display: block" %>
@@ -35,7 +37,7 @@
   <div>
     <%= form.label :user_id, "Usuario", style: "display: block" %>
     <% if action_name == "new" %>
-     <%= form.collection_select :user_id, @users_without_pending_loans, :id, :dni, { include_blank: 'Seleccione un usuario' }, class:"form-select mb-3" %>
+      <%= form.collection_select(:user_id, @available_users.try(:map) { |u| [u.dni, u.id] }, :last, :first, { prompt: "Selecciona un usuario" }, { class: "form-control mb-3" }) %>
     <% else %>
     <strong>
       <%= @loan.user.dni %>
