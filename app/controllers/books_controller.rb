@@ -9,7 +9,7 @@ class BooksController < ApplicationController
     page_number = params[:page].to_i
     page_number = 1 if page_number < 1
   
-    per_page = 1
+    per_page = 5
     offset = (page_number - 1) * per_page
   
     @books = Book.limit(per_page).offset(offset)
