@@ -1,12 +1,23 @@
 <h1 class="text-center p-4">Préstamos</h1>
+
+<div style="display: flex; justify-content: center;" class="m-5">
+  <%= form_tag search_loans_path, method: :get, class: "d-flex", role: "search" do %>
+    <%= number_field_tag :q, params[:q], placeholder: "Buscar C.I del usuario...", class: "form-control me-2", type: "search", style: "width: 300px;" %>
+    <%= button_tag type: "submit", class: "btn btn-outline-success" do %>
+      Buscar
+    <% end %>
+  <% end %>
+</div>
+
 <%= link_to "Nuevo préstamo", new_loan_path, class: "btn btn-success m-3" %>
+
 
 <div id="loans" class="table-responsive p-2">
   <table class="table table-bordered">
     <thead>
       <tr>
         <th>Fecha de préstamo:</th>
-        <th>Fecha esperada de entrega:</th>
+        <th>Fecha esperada de devolución:</th>
         <th>Fecha de devolución:</th>
         <th>Libro</th>
         <th>Usuario</th>

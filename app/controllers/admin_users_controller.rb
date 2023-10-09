@@ -36,6 +36,26 @@ class AdminUsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+  
+    Loan.where(user_id: @user.id).destroy_all
+  
+    @user.destroy
+  
+    respond_to do |format|
+      format.html { redirect_to admin_users_path, notice: "El usuario ha sido eliminado con éxito." }
+    end
+  end
+
+  def search
+    @q = params[:q]
+    @users = User.where("dni ILIKE ?", "%#{@q}%")
+
+
+    if current_user.admin?
+      render layout: "main/admin_index"
+    else
+      render layout: "main/user_index"
+    end
   end
 
 

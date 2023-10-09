@@ -1,0 +1,18 @@
+<section class="relative">
+    <div class="container px-4 mx-auto">
+        <div class="text-center">
+            <h2 class="m-4">
+                Resultado de la busqueda: <%= @q %>
+            </h2>
+        </div>
+        <div>
+                <div id="users">
+                <div>
+                        <% @users.each do |user| %>
+                        <div><%= render partial: 'admin_users/user', locals: { user: user } %></div>
+                        <% end %>
+                </div>
+                </div>
+        </div>
+        <%= link_to "Volver al cátalogo", admin_users_path %>
+</section>

@@ -2,18 +2,24 @@ Rails.application.routes.draw do
   root "books#index"
 
   resources :loans do
+
     member do
       put :return_book
+      get :user_loans
     end
+
+    get 'search', on: :collection
   end
 
   resources :books do
-    get 'search', on: :collection # books/search -> books#search
+    get 'search', on: :collection
   end
 
   resources :specialities
   
-  resources :admin_users
+  resources :admin_users do
+    get 'search', on: :collection
+  end
 
   devise_for :users, controllers: {
     registrations: 'user/registrations',

@@ -10,6 +10,8 @@ class BooksController < ApplicationController
 
     if current_user.admin?
       render layout: "main/admin_index"
+    else
+      render layout: "main/user_index"
     end
   end
 
@@ -76,6 +78,12 @@ class BooksController < ApplicationController
   def search
     @q = params[:q]
     @books = Book.where("title ILIKE ?", "%#{@q}%")
+
+    if current_user.admin?
+      render layout: "main/admin_index"
+    else
+      render layout: "main/user_index"
+    end
   end
 
   private
