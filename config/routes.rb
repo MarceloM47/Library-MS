@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "books#index"
+  root "books#index", defaults: { page: 1 }
 
   resources :loans do
 

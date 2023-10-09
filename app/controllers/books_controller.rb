@@ -6,8 +6,15 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @user = current_user
-    @books = Book.all
-
+    page_number = params[:page].to_i
+    page_number = 1 if page_number < 1
+  
+    per_page = 1
+    offset = (page_number - 1) * per_page
+  
+    @books = Book.limit(per_page).offset(offset)
+    @total_pages = (Book.count.to_f / per_page).ceil
+  
     if current_user.admin?
       render layout: "main/admin_index"
     else
@@ -70,7 +77,7 @@ class BooksController < ApplicationController
     @book.destroy
 
     respond_to do |format|
-      format.html { redirect_to books_url, notice: "El libro ha sido eliminado con éxito" }
+      format.html { redirect_to root_path, notice: "El libro ha sido eliminado con éxito" }
       format.json { head :no_content }
     end
   end
