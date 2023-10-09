@@ -26,8 +26,12 @@
       <% end %></td>
     </tr>
     <tr>
-      <th scope="row">Fecha esperada de entrega</th>
+      <th scope="row">Fecha esperada de devolución</th>
       <td><%= loan.expected_return_date %></td>
     </tr>
   </tbody>
 </table>
+
+  <% if action_name == "search" %>
+    <%= link_to "Ver más", loan, class: "btn btn-primary" %>
+  <% end %>

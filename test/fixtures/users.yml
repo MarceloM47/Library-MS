@@ -7,7 +7,7 @@
 #  encrypted_password     :string           default(""), not null
 #  name                   :string           not null
 #  lastname               :string           not null
-#  dni                    :integer          not null
+#  dni                    :string           not null
 #  phone_number           :integer          not null
 #  admin                  :boolean          default(FALSE), not null
 #  active                 :boolean          default(FALSE), not null

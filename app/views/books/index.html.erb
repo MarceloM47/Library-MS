@@ -1,5 +1,15 @@
 <h1 class="text-center p-4 ">Cátalogo de Libros</h1>
 
+<div style="display: flex; justify-content: center;" class="m-5">
+  <%= form_tag search_books_path, method: :get, class: "d-flex", role: "search" do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Buscar libro...", class: "form-control me-2", type: "search", style: "width: 300px;" %>
+    <%= button_tag type: "submit", class: "btn btn-outline-success" do %>
+      Buscar
+    <% end %>
+  <% end %>
+</div>
+
+
 <% if @user.admin? %>
   <%= link_to "Nuevo libro", new_book_path, class: "btn btn-primary m-4" %>
 <% end %>

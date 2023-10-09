@@ -1,37 +1,47 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: %i[ show edit update destroy ]
-  before_action :require_admin
+  before_action :require_admin, :except => [:user_loans]
 
-  layout "main/admin_index"
 
   # GET /loans or /loans.json
   def index
     @loans = Loan.order('created_at DESC').all
+    render layout: "main/admin_index"
   end
 
   # GET /loans/1 or /loans/1.json
   def show
+    render layout: "main/admin_index"
   end
 
   # GET /loans/new
   def new
     @loan = Loan.new
-    @available_books = Book.where(state: true)
-    @users_without_pending_loans = User.select { |user| !user.has_pending_loan? }.to_a
-
-
+    @available_books = Book.where(state: true).to_a
+    @available_users = User.where.not(id: Loan.where(returned: false).pluck(:user_id)).where(active: true).to_a
+    
+    render layout: "main/admin_index"
 
   end
 
   # GET /loans/1/edit
   def edit
     @loan = Loan.find(params[:id])
-    @available_books = Book.where(state: true)
+    
+    @available_books = Book.where(state: true).to_a
+    @available_users = User.where.not(id: Loan.where(returned: false).pluck(:user_id)).where(active: true).to_a
 
   end
 
   # POST /loans or /loans.json
   def create
+    puts params.inspect
+
+    unless valid_loan_params?
+      redirect_to new_loan_path, notice: "Debes seleccionar un libro, un usuario y las fechas antes de guardar el préstamo."
+      return
+    end
+    
     @loan = Loan.new(loan_params)
 
     @book = @loan.book
@@ -90,8 +100,33 @@ class LoansController < ApplicationController
     redirect_to return_book_loan_path(@loan)
   end
 
+  def search
+    @q = params[:q]
+    @loans = Loan.joins(:user).where(users: { dni: @q })
+
+    if current_user.admin?
+      render layout: "main/admin_index"
+    else
+      render layout: "main/user_index"
+    end
+  end
+
+  def user_loans
+    @loans = Loan.where(user_id: current_user.id)
+    render layout: "main/user_index"
+  end
+
 
   private
+
+    def valid_loan_params?
+      puts loan_params.inspect
+    
+      loan_params[:book_id].present? && loan_params[:user_id].present? &&
+      loan_params[:loan_date].present? && loan_params[:expected_return_date].present?
+    end
+  
+  
 
     def require_admin
       unless current_user.admin?

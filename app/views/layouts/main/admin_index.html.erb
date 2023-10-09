@@ -42,17 +42,6 @@
             <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class:"nav-link" %>
           </li>
         </ul>
-
-        <div class="hidden lg:flex">
-
-        <%= form_tag search_books_path, method: :get, class:"d-flex", role:"search" do %>
-            <%= text_field_tag :q, params[:q], placeholder:"Buscar", class:"form-control me-2", type:"search" %>
-            <%= button_tag type:"submit", class:"btn btn-outline-success" do %>
-                Buscar
-            <% end %>
-        <% end %>
-  
-        </div>
       </div>
     </div>
   </nav>

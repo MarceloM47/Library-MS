@@ -1,0 +1,34 @@
+<h1 class="text-center p-4">Mis Préstamos</h1>
+
+<div id="loans" class="table-responsive p-2">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Fecha de préstamo:</th>
+        <th>Fecha esperada de devolución:</th>
+        <th>Fecha de devolución:</th>
+        <th>Libro</th>
+        <th>Usuario</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @loans.each do |loan| %>
+        <tr>
+          <td><%= loan.loan_date %></td>
+          <td><%= loan.expected_return_date %></td>
+          <td><%= loan.return_date %></td>
+          <td><%= loan.book.title %></td>
+          <td><%= loan.user.dni %></td>
+          <td>
+            <% if loan.returned %>
+              Devuelto
+            <% else %>
+              No devuelto
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
