@@ -14,7 +14,7 @@ User.create!(
   name: "root",
   lastname: "root",
   dni: "0000000",
-  phone_number: "0987654321",
+  phone_number: "9999999999",
   admin: true,
   active: true,
   speciality_id: Speciality.first.id
