@@ -29,8 +29,6 @@ class LoansController < ApplicationController
     @loan = Loan.find(params[:id])
     
     @available_books = Book.where(state: true).to_a
-    @available_users = User.where.not(id: Loan.where(returned: false).pluck(:user_id)).where(active: true).to_a
-
   end
 
   # POST /loans or /loans.json
@@ -65,7 +63,9 @@ class LoansController < ApplicationController
   def update
     respond_to do |format|
       if @loan.update(loan_params)
-        @book.update_columns(state: false) if @book.stock.zero?
+        if @book && @book.stock.present? && @book.stock.zero?
+          @book.update_columns(state: false)
+        end
 
         format.html { redirect_to loan_url(@loan), notice: "El préstamo ha sido actualizado con éxito" }
         format.json { render :show, status: :ok, location: @loan }
@@ -120,7 +120,6 @@ class LoansController < ApplicationController
   private
 
     def valid_loan_params?
-      puts loan_params.inspect
     
       loan_params[:book_id].present? && loan_params[:user_id].present? &&
       loan_params[:loan_date].present? && loan_params[:expected_return_date].present?
