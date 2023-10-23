@@ -94,6 +94,8 @@ class LoansController < ApplicationController
     else
       @loan.update(returned: true, return_date: Date.current)
       @loan.book.increment!(:stock)
+      @book = @loan.book
+      @book.update_columns(state: true) if @book.stock > 0
       flash[:notice] = "Libro devuelto con éxito"
     end
   
