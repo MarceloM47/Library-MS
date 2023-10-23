@@ -11,7 +11,13 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    unless valid_user_params?
+    if valid_user_params?
+      if params[:user][:password] == params[:user][:password_confirmation]
+        super
+      else
+        redirect_to new_user_registration_path, notice: "Las contraseñas no coinciden"
+      end
+    else
       redirect_to new_user_registration_path, notice: "Todos los campos son obligatorios"
     end
   end
@@ -66,9 +72,13 @@ class User::RegistrationsController < Devise::RegistrationsController
   private
 
   def valid_user_params?
-    params[:email].present? && params[:password].present? &&
-    params[:name].present? && params[:lastname].present? &&
-    params[:dni].present? && params[:phone_number].present? &&
-    params[:speciality_id].present?
+    params[:user].present? &&
+      params[:user][:email].present? &&
+      params[:user][:password].present? &&
+      params[:user][:name].present? &&
+      params[:user][:lastname].present? &&
+      params[:user][:dni].present? &&
+      params[:user][:phone_number].present? &&
+      params[:user][:speciality_id].present?
   end
 end
