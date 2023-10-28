@@ -1,24 +1,61 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Library Management System (LMS) <br>
+## Installation
 
-Things you may want to cover:
+### Requirements
 
-* Ruby version
+- Ruby 3.2.2
+- Rails 7
 
-* System dependencies
+### Install Library-MS
 
-* Configuration
+1. **Install dependencies:**
 
-* Database creation
+  ```bash
+  bundle install
+  ```
 
-* Database initialization
+2. **Load initial data:**
 
-* How to run the test suite
+  ```bash
+  rails db:seed
+  ```
 
-* Services (job queues, cache servers, search engines, etc.)
+3. **Apply migrations:**
 
-* Deployment instructions
+  ```bash
+  rails db:migrate
+  ```
+4. **Start the server:**
 
-* ...
+  ```bash
+  rails s
+  ```
+<br>
+
+## Seeds.rb
+The "Profesor" specialty is created and the default administrator user is created.
+
+```
+Speciality.create!(name: "Profesor")
+
+User.create!(
+  email: "example@example.com",
+  password: "123456",
+  name: "root",
+  lastname: "root",
+  dni: "0000000",
+  phone_number: "9999999999",
+  admin: true,
+  active: true,
+  speciality_id: Speciality.first.id
+)
+```
+
+## Authors
+
+- [@marcelom47](https://www.github.com/marcelom47)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
