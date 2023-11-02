@@ -2,11 +2,11 @@
 
 <div>
   <%= link_to "Editar esta especialidad", edit_speciality_path(@speciality), class:"btn btn-primary m-2" %>
-  <button type="button" class="btn btn-danger mb-2" id="btn-del" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+  <button type="button" class="btn btn-danger m-2" id="btn-del" data-bs-toggle="modal" data-bs-target="#exampleModal" >
       Eliminar esta especialidad
   </button>
-  <%= link_to "Volver a especialidades", specialities_path, class:"m-2" %>
 </div>
+<%= link_to "Volver a especialidades", specialities_path, class:"m-2 btn btn-secondary" %>
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

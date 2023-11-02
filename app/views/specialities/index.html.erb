@@ -2,11 +2,8 @@
 
 <%= link_to "Nueva especialidad", new_speciality_path, class: "btn btn-primary m-4" %>
 
-<div id="specialities">
+<div id="specialities" class="d-flex flex-row">
   <% @specialities.each do |speciality| %>
     <%= render speciality %>
-    <p>
-      <%= link_to "Ver esta especialidad", speciality, class:"m-4" %>
-    </p>
   <% end %>
 </div>
