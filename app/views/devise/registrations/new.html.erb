@@ -67,9 +67,12 @@
             </div>
           <% end %>
 
-          <div class="text-center mt-3">
-            <%= render "devise/shared/links" %>
+          <div style="display: flex; justify-content: space-around;">
+          <div class="text-center mt-5">
+            <p>¿Ya tienes una cuenta?</p>
+            <%= link_to "Iniciar sesión", new_user_session_path, class: "btn btn-secondary" %>
           </div>
+        </div>
         </div>
       </div>
     </div>
