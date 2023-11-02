@@ -27,8 +27,6 @@ class Book < ApplicationRecord
 
     validates :image, presence: { message: "La imagen no puede ser nula" }
 
-    validates :state, presence: { message: "El estado no puede se nulo" }
-
     validates :stock, presence: { message: "El stock no puede estar en blanco" }
     validates :stock, numericality: { greater_than_or_equal_to: 0, message: "El stock no puede ser un número negativo" }
 
