@@ -4,7 +4,9 @@
       <strong>Nombre:</strong>
       <%= speciality.name %>
       <p class="card-text">
-        <%= link_to "Ver esta especialidad", speciality, class:"mt-3 btn btn-primary" %>
+        <% if action_name == "index" || action_name == "search" %>
+          <%= link_to "Ver esta especialidad", speciality, class:"mt-3 btn btn-primary" %>
+        <% end %>
       </p>
     </div>
   </div>
