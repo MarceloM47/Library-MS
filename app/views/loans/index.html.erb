@@ -16,6 +16,7 @@
   <table class="table table-bordered">
     <thead>
       <tr>
+        <th>ID:</th>
         <th>Fecha de préstamo:</th>
         <th>Fecha esperada de devolución:</th>
         <th>Fecha de devolución:</th>
@@ -28,6 +29,7 @@
     <tbody>
       <% @loans.each do |loan| %>
         <tr>
+          <td><%= loan.id %></td>
           <td><%= loan.loan_date %></td>
           <td><%= loan.expected_return_date %></td>
           <td><%= loan.return_date %></td>
