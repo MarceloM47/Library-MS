@@ -21,11 +21,11 @@
         No disponible
       <% end %>
       </li>
-      <li class="list-group-item">
-        <% if current_user.admin? %>
-          Stock: <%= book.stock %>
-        <% end %>
-      </li>
+      <% if current_user.admin? %>
+        <li class="list-group-item">
+            Stock: <%= book.stock %>
+        </li>
+      <% end %>
     </ul>
       <div class="card-body">
         <% if action_name == "index" || action_name == "search" %>
