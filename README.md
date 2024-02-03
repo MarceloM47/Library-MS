@@ -52,10 +52,6 @@ User.create!(
 )
 ```
 
-## Authors
-
-- [@marcelom47](https://www.github.com/marcelom47)
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
